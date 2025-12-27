@@ -39,7 +39,7 @@ public class FailureSimulator {
             simulateFileFailure();
             break;
         case "DB":
-            simulateDbFailure();
+            retryDbFailure(3);;
             break;
         default:
             throw new RuntimeException("Unknown failure type");
@@ -63,6 +63,24 @@ private static void simulateFileFailure() throws IOException {
         Connection conn = DriverManager.getConnection(url, user, password);
         conn.close();
 
+    }
+
+    private static void retryDbFailure(int maxRetries){
+
+        int attempt=1;
+
+        while(attempt<=maxRetries){
+            try{
+                log("INFO","DATABASE","DB connrction attempt"+attempt);
+                simulateDbFailure();
+                log("INFO","DATABASE","DB connection successful");
+                return;
+            } catch (SQLException e) {
+                log("ERROR","DATABASE","ATTEMPT"+attempt+"DB connection failed on attempt " +e.getMessage() );
+                attempt++;
+            }
+        }
+        log("ERROR","DATABASE","All retry attempts failed");
     }
 
     private static void log(String level, String component, String message) {
