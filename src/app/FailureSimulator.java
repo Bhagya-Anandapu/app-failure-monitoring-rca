@@ -1,5 +1,8 @@
 package app;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,14 +22,17 @@ public class FailureSimulator {
         log("Application ended");
     }
 
-    private static void simulateFailure() throws IOException{
-        readFile();
+    private static void simulateFailure() throws SQLException{
+        simulateDbFailure();
     }
 
-    private static void readFile() throws IOException{
-        String filePath="data/input.txt";
-        FileReader reader=new FileReader(filePath);
-        reader.close();
+    private static void simulateDbFailure() throws SQLException{
+        String url="jdbc:mysql://localhost:3306/nonexistentdb";
+        String user = "root";
+        String password="wrongpassword";
+        Connection conn = DriverManager.getConnection(url, user, password);
+        conn.close();
+
     }
 
     private static void log(String message){

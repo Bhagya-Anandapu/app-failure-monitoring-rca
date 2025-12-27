@@ -4,3 +4,6 @@
 2025-12-27T15:21:44.967297 - Application started
 2025-12-27T15:21:44.996287400 - Error: FileNotFoundException - data\input.txt (The system cannot find the path specified)
 2025-12-27T15:21:44.998286400 - Application ended
+2025-12-27T15:37:59.025123400 - Application started
+2025-12-27T15:37:59.054780900 - Error: SQLException - No suitable driver found for jdbc:mysql://localhost:3306/nonexistentdb
+2025-12-27T15:37:59.061776100 - Application ended
