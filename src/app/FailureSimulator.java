@@ -1,5 +1,6 @@
 package app;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -18,12 +19,14 @@ public class FailureSimulator {
         log("Application ended");
     }
 
-    private static void simulateFailure(){
-        int a=10;
-        int b=0;
+    private static void simulateFailure() throws IOException{
+        readFile();
+    }
 
-        int result=a/b; // This will throw ArithmeticException
-        System.out.println("Result: " + result);
+    private static void readFile() throws IOException{
+        String filePath="data/input.txt";
+        FileReader reader=new FileReader(filePath);
+        reader.close();
     }
 
     private static void log(String message){

@@ -1,3 +1,6 @@
 2025-12-27T15:08:39.801366600 - Application started
 2025-12-27T15:08:39.815360400 - Error: ArithmeticException - / by zero
 2025-12-27T15:08:39.817357100 - Application ended
+2025-12-27T15:21:44.967297 - Application started
+2025-12-27T15:21:44.996287400 - Error: FileNotFoundException - data\input.txt (The system cannot find the path specified)
+2025-12-27T15:21:44.998286400 - Application ended
