@@ -1,0 +1,3 @@
+2025-12-27T15:08:39.801366600 - Application started
+2025-12-27T15:08:39.815360400 - Error: ArithmeticException - / by zero
+2025-12-27T15:08:39.817357100 - Application ended
