@@ -9,22 +9,52 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 public class FailureSimulator {
-    private static final String LoG_FILE="logs/application.log";
+    private static final String LOG_FILE="logs/application.log";
 
     public static void main(String[] args) {
-        log("Application started");
-        try {
+        log("INFO","APP","Application started");
+        try{
             simulateFailure();
-        } catch (Exception e) {
-            log("Error: " + e.getClass().getSimpleName()+" - " + e.getMessage());
-            System.out.println("Application crashed.Check logs for details.");
+            log("INFO","APP","Execution completed successfully");
+        } catch(ArithmeticException e){
+            log("ERROR","APPLICATION",e.getMessage());
+        } catch(IOException e){
+            log("ERROR","FILE_SYSTEM",e.getMessage());
+        } catch(SQLException e){
+            log("ERROR","DATABASE",e.getMessage());
+        } catch(Exception e){
+            log("ERROR","UNKNOWN",e.getMessage());
         }
-        log("Application ended");
+        log("INFO","APP","Application ended");
     }
 
-    private static void simulateFailure() throws SQLException{
-        simulateDbFailure();
+    private static void simulateFailure() throws Exception {
+    String failureType = "DB"; // change this to APP / FILE / DB
+
+    switch (failureType) {
+        case "APP":
+            simulateAppFailure();
+            break;
+        case "FILE":
+            simulateFileFailure();
+            break;
+        case "DB":
+            simulateDbFailure();
+            break;
+        default:
+            throw new RuntimeException("Unknown failure type");
     }
+}
+    private static void simulateAppFailure() {
+    int a = 10;
+    int b = 0;
+    int result = a / b;
+}
+private static void simulateFileFailure() throws IOException {
+    String filePath = "data/input.txt";
+    FileReader reader = new FileReader(filePath);
+    reader.close();
+}
 
     private static void simulateDbFailure() throws SQLException{
         String url="jdbc:mysql://localhost:3306/nonexistentdb";
@@ -35,12 +65,17 @@ public class FailureSimulator {
 
     }
 
-    private static void log(String message){
-        try(FileWriter writer=new FileWriter(LoG_FILE,true)){
-            String timeStamp= LocalDateTime.now().toString();
-            writer.write(timeStamp + " - " + message + "\n");
-        } catch (IOException e) {
-            System.out.println("Logging failed: " + e.getMessage());
-        }
+    private static void log(String level, String component, String message) {
+    try (FileWriter writer = new FileWriter(LOG_FILE, true)) {
+        writer.write("{"
+                + "\"timestamp\":\"" + LocalDateTime.now() + "\","
+                + "\"level\":\"" + level + "\","
+                + "\"component\":\"" + component + "\","
+                + "\"message\":\"" + message + "\""
+                + "}\n");
+    } catch (IOException e) {
+        System.out.println("Logging failed");
     }
+}
+
 }
