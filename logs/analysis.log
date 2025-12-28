@@ -1,10 +1,8 @@
-{"timestamp":"2025-12-28T13:01:23.223803400","level":"INFO","component":"APP","message":"Application started"}
-{"timestamp":"2025-12-28T13:01:23.245780500","level":"INFO","component":"DATABASE","message":"DB connrction attempt1"}
+---- ERROR COUNT BY COMPONENT ----
+      4 DATABASE
+
+---- LAST 5 ERRORS ----
 {"timestamp":"2025-12-28T13:01:23.273764900","level":"ERROR","component":"DATABASE","message":"ATTEMPT1DB connection failed on attempt No suitable driver found for jdbc:mysql://localhost:3306/nonexistentdb"}
-{"timestamp":"2025-12-28T13:01:23.275762100","level":"INFO","component":"DATABASE","message":"DB connrction attempt2"}
 {"timestamp":"2025-12-28T13:01:23.275762100","level":"ERROR","component":"DATABASE","message":"ATTEMPT2DB connection failed on attempt No suitable driver found for jdbc:mysql://localhost:3306/nonexistentdb"}
-{"timestamp":"2025-12-28T13:01:23.276762100","level":"INFO","component":"DATABASE","message":"DB connrction attempt3"}
 {"timestamp":"2025-12-28T13:01:23.279779500","level":"ERROR","component":"DATABASE","message":"ATTEMPT3DB connection failed on attempt No suitable driver found for jdbc:mysql://localhost:3306/nonexistentdb"}
 {"timestamp":"2025-12-28T13:01:23.281758900","level":"ERROR","component":"DATABASE","message":"All retry attempts failed"}
-{"timestamp":"2025-12-28T13:01:23.282758600","level":"INFO","component":"APP","message":"Execution completed successfully"}
-{"timestamp":"2025-12-28T13:01:23.283766500","level":"INFO","component":"APP","message":"Application ended"}
