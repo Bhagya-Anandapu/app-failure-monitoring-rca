@@ -36,11 +36,11 @@ All failures are intentionally simulated to study system behavior under error co
 
 - Reasoning across multiple layers:
 
-- - Application logic
+  - Application logic
 
-- - File system
+  - File system
 
-- - Database access
+  - Database access
 
 ## 🛠️ Approach
 
